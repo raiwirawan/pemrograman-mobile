@@ -1,9 +1,42 @@
-import ColoredTexts from "../components/ColoredTexts";
+import Button from "@/components/Button";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
 	return (
-		<>
-			<ColoredTexts />
-		</>
+		<View style={style.container}>
+			<Text style={style.textStyle}>
+				Silahkan Pilih Menu yang Ingin Diakses :
+			</Text>
+			<Button style={style.button} location={"/praktikum"} text="Praktikum" />
+			<Button style={style.button} location={"/tugas"} text="Tugas" />
+		</View>
 	);
 }
+
+const style = StyleSheet.create({
+	container: {
+		flex: 1,
+		padding: 24,
+		backgroundColor: "#fff",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	textStyle: {
+		fontSize: 20,
+		textAlign: "center",
+		marginBottom: 20,
+		fontWeight: "700",
+	},
+	button: {
+		backgroundColor: "green",
+		width: "100%",
+		paddingVertical: 20,
+		borderRadius: 10,
+		padding: 10,
+		textAlign: "center",
+		color: "white",
+		fontWeight: "700",
+		marginBottom: 20,
+		fontSize: 18,
+	},
+});
