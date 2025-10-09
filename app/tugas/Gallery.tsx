@@ -1,108 +1,106 @@
-import {
-	CameraRoll,
-	PhotoIdentifier,
-} from "@react-native-camera-roll/camera-roll";
+import * as MediaLibrary from "expo-media-library";
 import React, { useState } from "react";
 import {
+	ActivityIndicator,
 	Alert,
 	Button,
 	FlatList,
 	Image,
-	PermissionsAndroid,
-	Platform,
 	StyleSheet,
+	Text,
 	View,
 } from "react-native";
 
-interface Photo {
-	uri: string;
-	id: number;
-}
+// Definisikan tipe untuk aset gambar agar lebih aman (Meskipun MediaLibrary.Asset sudah tersedia)
+type GalleryAsset = MediaLibrary.Asset;
 
-export default function AndroidGalleryScreen() {
-	const [photos, setPhotos] = useState<Photo[]>([]);
-	const [isLoading, setIsLoading] = useState(false);
+export default function App() {
+	// Gunakan tipe GalleryAsset[] untuk state images
+	const [images, setImages] = useState<GalleryAsset[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
-	// 1. Fungsi untuk meminta izin KHUSUS Android
-	const hasAndroidPermission = async () => {
-		if (Platform.OS === "android") {
-			const permission =
-				PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES ||
-				PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
+	// usePermissions() mengembalikan array yang sudah di-typed dengan benar
+	const [permissionResponse, requestPermission] = MediaLibrary.usePermissions();
 
-			const hasPermission = await PermissionsAndroid.check(permission);
-			if (hasPermission) {
-				return true;
-			}
-
-			const status = await PermissionsAndroid.request(permission);
-			return status === "granted";
-		}
-		// Jika bukan Android, asumsikan izin sudah diberikan (diurus oleh sistem iOS/lainnya)
-		return true;
-	};
-
-	// 2. Fungsi untuk memuat foto
-	const loadPhotos = async () => {
+	const getGalleryImages = async () => {
 		setIsLoading(true);
 
-		// Cek izin hanya untuk Android
-		if (!(await hasAndroidPermission())) {
+		// 1. Cek dan Minta Izin
+		let finalStatus = permissionResponse;
+
+		if (finalStatus?.status !== "granted") {
+			// requestPermission() akan meminta izin
+			const response = await requestPermission();
+			finalStatus = response;
+		}
+
+		if (finalStatus?.status !== "granted") {
 			Alert.alert(
-				"Izin Diperlukan",
-				"Kami membutuhkan izin untuk membaca galeri Anda."
+				"Izin Ditolak",
+				"Akses ke galeri diperlukan untuk menampilkan gambar."
 			);
 			setIsLoading(false);
 			return;
 		}
 
+		// 2. Ambil Aset Gambar
 		try {
-			// Menggunakan CameraRoll.getPhotos
-			const result = await CameraRoll.getPhotos({
-				first: 10, // Batasi hingga 10 foto
-				assetType: "Photos", // Hanya ambil foto
-				// Untuk sorting, CameraRoll memiliki opsi terbatas, biasanya sudah terurut berdasarkan waktu.
+			// PagedInfo<GalleryAsset> adalah tipe yang dikembalikan
+			const assetsPage = await MediaLibrary.getAssetsAsync({
+				first: 10,
+				mediaType: [MediaLibrary.MediaType.photo],
+				sortBy: [MediaLibrary.SortBy.creationTime],
 			});
 
-			// Simpan URI foto ke state
-			if (result.edges.length > 0) {
-				// Ambil path URI dari node
-				setPhotos(
-					result.edges.map((edge: PhotoIdentifier) => ({
-						uri: edge.node.image.uri,
-						id: edge.node.timestamp,
-					}))
-				);
-			} else {
-				Alert.alert("Info", "Tidak ditemukan foto di galeri Anda.");
-			}
+			// assetsPage.assets adalah array dari GalleryAsset (MediaLibrary.Asset)
+			setImages(assetsPage.assets);
 		} catch (error) {
-			console.error("Gagal memuat foto:", error);
-			Alert.alert("Error", "Gagal memuat foto dari galeri.");
+			console.error("Gagal mengambil gambar: ", error);
+			Alert.alert("Error", "Gagal mengambil gambar dari galeri.");
 		} finally {
 			setIsLoading(false);
 		}
 	};
 
-	const renderItem = ({ item }: { item: Photo }) => (
-		<Image source={{ uri: item.uri }} style={styles.image} />
+	// Fungsi untuk merender setiap item gambar
+	// Definisikan tipe untuk parameter FlatList renderItem
+	const renderItem = ({ item }: { item: GalleryAsset }) => (
+		<View style={styles.imageContainer}>
+			<Image source={{ uri: item.uri }} style={styles.image} />
+		</View>
 	);
 
 	return (
 		<View style={styles.container}>
+			<Text style={styles.title}>Tugas Pemrograman Mobile (TSX)</Text>
+
 			<Button
-				title={isLoading ? "Memuat..." : "Tampilkan 10 Foto Galeri (Android)"}
-				onPress={loadPhotos}
-				disabled={isLoading}
+				title={isLoading ? "Memuat..." : "Tampilkan 10 Gambar Galeri"}
+				onPress={getGalleryImages}
+				disabled={isLoading || !permissionResponse}
 			/>
 
+			{isLoading && (
+				<ActivityIndicator
+					size="large"
+					color="#0000ff"
+					style={{ marginTop: 20 }}
+				/>
+			)}
+
 			<FlatList
-				data={photos}
+				data={images}
 				renderItem={renderItem}
-				keyExtractor={(item) => item.id.toString()}
+				keyExtractor={(item) => item.id}
 				numColumns={3}
 				style={styles.list}
 			/>
+
+			{images.length === 0 && !isLoading && (
+				<Text style={styles.infoText}>
+					Tekan tombol di atas untuk memuat gambar dari galeri.
+				</Text>
+			)}
 		</View>
 	);
 }
@@ -111,16 +109,31 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		paddingTop: 50,
-		paddingHorizontal: 10,
-		backgroundColor: "#fff",
+		alignItems: "center",
+		backgroundColor: "#f0f0f0",
+	},
+	title: {
+		fontSize: 20,
+		fontWeight: "bold",
+		marginBottom: 20,
 	},
 	list: {
-		marginTop: 10,
+		marginTop: 20,
+		width: "100%",
+	},
+	imageContainer: {
+		flex: 1,
+		margin: 2,
+		aspectRatio: 1,
 	},
 	image: {
-		width: "33.33%",
-		height: 120,
-		aspectRatio: 1,
-		margin: 1,
+		width: "100%",
+		height: "100%",
+		resizeMode: "cover",
+	},
+	infoText: {
+		marginTop: 20,
+		color: "#666",
+		textAlign: "center",
 	},
 });

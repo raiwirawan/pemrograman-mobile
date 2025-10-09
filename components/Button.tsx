@@ -1,17 +1,25 @@
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
+import { StyleProp, Text, TouchableOpacity } from "react-native";
 
 export default function Button({
 	style,
 	location = "/",
 	text = "Press Me",
+	textStyle,
 }: {
-	style: any;
-	location?: any;
+	style: StyleProp<any>;
+	location?: string;
 	text?: string;
+	textStyle?: StyleProp<any>;
 }) {
+	const router = useRouter();
+
 	return (
-		<Link style={style} href={location}>
-			{text}
-		</Link>
+		<TouchableOpacity
+			style={style}
+			onPress={() => router.push(location as any)}
+		>
+			<Text style={textStyle}>{text}</Text>
+		</TouchableOpacity>
 	);
 }

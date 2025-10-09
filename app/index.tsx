@@ -7,8 +7,18 @@ export default function Index() {
 			<Text style={style.textStyle}>
 				Silahkan Pilih Menu yang Ingin Diakses :
 			</Text>
-			<Button style={style.button} location={"/praktikum"} text="Praktikum" />
-			<Button style={style.button} location={"/tugas"} text="Tugas" />
+			<Button
+				style={style.button}
+				location={"/praktikum"}
+				text="Praktikum"
+				textStyle={style.buttonTextStyle}
+			/>
+			<Button
+				style={style.button}
+				location={"/tugas"}
+				text="Tugas"
+				textStyle={style.buttonTextStyle}
+			/>
 		</View>
 	);
 }
@@ -33,10 +43,12 @@ const style = StyleSheet.create({
 		paddingVertical: 20,
 		borderRadius: 10,
 		padding: 10,
-		textAlign: "center",
+		marginBottom: 20,
+	},
+	buttonTextStyle: {
 		color: "white",
 		fontWeight: "700",
-		marginBottom: 20,
 		fontSize: 18,
+		textAlign: "center",
 	},
 });

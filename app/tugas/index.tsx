@@ -1,18 +1,23 @@
 import Button from "@/components/Button";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function TugasIndex() {
 	return (
 		<View style={style.container}>
+			<Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 20 }}>
+				List Tugas
+			</Text>
 			<Button
 				style={[style.button, style.flexCenter]}
-				location="./AlertPrimakara"
+				location="/tugas/AlertPrimakara"
 				text="1. Alert Primakara"
+				textStyle={style.textStyle}
 			/>
 			<Button
 				style={[style.button, style.flexCenter]}
-				location="./Gallery"
+				location="/tugas/Gallery"
 				text="2. Gallery 10 foto"
+				textStyle={style.textStyle}
 			/>
 		</View>
 	);
@@ -24,13 +29,15 @@ const style = StyleSheet.create({
 		backgroundColor: "blue",
 		padding: 10,
 		paddingVertical: 20,
+		paddingLeft: 20,
+		borderRadius: 20,
+		marginBottom: 20,
+	},
+	textStyle: {
 		color: "white",
 		fontWeight: "700",
 		fontSize: 18,
 		textAlign: "left",
-		paddingLeft: 20,
-		borderRadius: 20,
-		marginBottom: 20,
 	},
 	flexCenter: {
 		alignItems: "flex-start",
