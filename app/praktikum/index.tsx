@@ -27,19 +27,19 @@ export default function PraktikumIndex() {
 			/>
 			<Button
 				style={[style.button, style.flexCenter]}
-				location="/praktikum/ColoredBoxFlexDirection"
+				location="/praktikum/ColoredBoxesFlexDirection"
 				text="4. Box Berwarna - Flex Direction"
 				textStyle={style.buttonTextStyle}
 			/>
 			<Button
 				style={[style.button, style.flexCenter]}
-				location="/praktikum/ColoredBoxFDJC"
+				location="/praktikum/ColoredBoxesFDJC"
 				text="5. Box Berwarna - Flex Direction, Justify Content"
 				textStyle={style.buttonTextStyle}
 			/>
 			<Button
 				style={[style.button, style.flexCenter]}
-				location="/praktikum/ColoredBoxStretch"
+				location="/praktikum/ColoredBoxesStretch"
 				text="6. Box Berwarna - Align Items Stretch"
 				textStyle={style.buttonTextStyle}
 			/>
