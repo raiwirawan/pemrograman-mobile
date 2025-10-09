@@ -4,7 +4,7 @@ Repository ini berisi tugas-tugas yang telah saya kerjakan selama mengikuti mata
 
 ## TUGAS-TUGAS (BRANCHES)
 
-### **tugas-1**: Implementasi dasar React Native.
+### [**tugas-1**: Implementasi dasar React Native.](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-1)
 
 - Menggunakan komponen dasar seperti View, Text, dan StyleSheet.
 - Menerapkan styling sederhana pada komponen.
@@ -18,5 +18,10 @@ Repository ini berisi tugas-tugas yang telah saya kerjakan selama mengikuti mata
   - Praktikum 5: `app/praktikum/ColoredBoxesFDJC.tsx`
   - Praktikum 6: `app/praktikum/ColoredBoxesStretch.tsx`
 - Terdapat Tugas: `app/tugas/index.tsx`
+
   - Tugas 1: `app/tugas/AlertPrimakara.tsx`
   - Tugas 2: `app/tugas/Gallery.tsx`
+
+  ### Silahkan kunjungi branch [tugas-1](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-1)
+
+---
