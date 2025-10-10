@@ -1,5 +1,8 @@
-import { useRouter } from "@/.expo/types/router";
+import { useRouter } from "expo-router";
 import { Text, TouchableOpacity } from "react-native";
+
+import { buttonStyles } from "@/styles/button";
+import { textStyles } from "@/styles/text";
 
 export default function RouteButton({
 	title,
@@ -11,8 +14,11 @@ export default function RouteButton({
 	const router = useRouter();
 
 	return (
-		<TouchableOpacity onPress={() => router.push(location as never)}>
-			<Text>{title}</Text>
+		<TouchableOpacity
+			style={buttonStyles.default}
+			onPress={() => router.push(location as never)}
+		>
+			<Text style={[textStyles.subheading, { color: "white" }]}>{title}</Text>
 		</TouchableOpacity>
 	);
 }
