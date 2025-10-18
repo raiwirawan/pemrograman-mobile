@@ -1,6 +1,6 @@
 import { Button } from "@react-navigation/elements";
-import { Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Text, View } from "react-native";
 
 function MyBackButton() {
 	const navigation = useNavigation();
@@ -11,7 +11,7 @@ function MyBackButton() {
 				navigation.goBack();
 			}}
 		>
-			Back
+			Go back to Home
 		</Button>
 	);
 }
@@ -19,7 +19,7 @@ function MyBackButton() {
 export default function ProfileScreen() {
 	return (
 		<View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-			<Text>Profile Screen</Text>
+			<Text style={{ marginBottom: 10 }}>You are now in Profile Screen</Text>
 			<MyBackButton />
 		</View>
 	);

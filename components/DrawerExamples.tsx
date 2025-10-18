@@ -5,19 +5,15 @@ import {
 import { Button } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import ProfileScreen from "../app/ProfileScreen";
 
-function HomeScreen() {
+function DrawerExamplesScreen() {
 	const navigation = useNavigation<DrawerNavigationProp<any>>();
 
 	return (
 		<View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
 			<Button onPress={() => navigation.openDrawer()}>Open drawer</Button>
-			<Text style={{ marginVertical: 10 }}>OR</Text>
-			<Button onPress={() => navigation.navigate("Profile")}>
-				Go to Profile
-			</Button>
 		</View>
 	);
 }
@@ -27,7 +23,7 @@ const LeftDrawer = createDrawerNavigator();
 const LeftDrawerScreen = () => {
 	return (
 		<LeftDrawer.Navigator screenOptions={{ drawerPosition: "left" }}>
-			<LeftDrawer.Screen name="Home" component={HomeScreen} />
+			<LeftDrawer.Screen name="Home" component={DrawerExamplesScreen} />
 			<LeftDrawer.Screen name="Profile" component={ProfileScreen} />
 		</LeftDrawer.Navigator>
 	);
