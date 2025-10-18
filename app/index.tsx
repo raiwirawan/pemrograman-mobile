@@ -1,33 +1,18 @@
-import RouteButton from "@/components/RouteButton";
-import { Text, View } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as React from "react";
 
-import { textStyles } from "@/styles/text";
+import HomeScreen from "./HomeScreen";
+import ProfileScreen from "./ProfileScreen";
 
-export default function Index() {
+const Stack = createNativeStackNavigator();
+
+function App() {
 	return (
-		<View
-			style={{
-				flex: 1,
-				justifyContent: "center",
-				alignItems: "center",
-			}}
-		>
-			<Text style={textStyles.heading}>TUGAS 2</Text>
-			<Text style={[textStyles.subheading, { marginBottom: 20 }]}>
-				Silahkan pilih mau melihat yang mana
-			</Text>
-			<RouteButton
-				title="Praktikum"
-				location="/praktikum"
-				styles={{ width: 200 }}
-				textStyle={{ textAlign: "center" }}
-			/>
-			<RouteButton
-				title="Tugas Mandiri"
-				location="/tugas_mandiri"
-				styles={{ width: 200 }}
-				textStyle={{ textAlign: "center" }}
-			/>
-		</View>
+		<Stack.Navigator initialRouteName="Home">
+			<Stack.Screen name="Home" component={HomeScreen} />
+			<Stack.Screen name="Profile" component={ProfileScreen} />
+		</Stack.Navigator>
 	);
 }
+
+export default App;
