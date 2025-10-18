@@ -13,10 +13,10 @@ function HomeScreen() {
 
 	return (
 		<View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-			<Button onPress={() => navigation.openDrawer()}>Open drawer</Button>
-			<Text style={{ marginVertical: 10 }}>OR</Text>
+			<Button onPress={() => navigation.openDrawer()}>Buka Drawer</Button>
+			<Text style={{ marginVertical: 10 }}>ATAU</Text>
 			<Button onPress={() => navigation.navigate("Profile")}>
-				Go to Profile
+				Pergi ke Profile Screen
 			</Button>
 		</View>
 	);

@@ -11,7 +11,7 @@ function MyBackButton() {
 				navigation.goBack();
 			}}
 		>
-			Go back to Home
+			Kembali ke Home Screen
 		</Button>
 	);
 }
@@ -19,7 +19,9 @@ function MyBackButton() {
 export default function ProfileScreen() {
 	return (
 		<View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-			<Text style={{ marginBottom: 10 }}>You are now in Profile Screen</Text>
+			<Text style={{ marginBottom: 10 }}>
+				Kamu sekarang sedang di Profile Screen
+			</Text>
 			<MyBackButton />
 		</View>
 	);
