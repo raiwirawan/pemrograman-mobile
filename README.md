@@ -43,3 +43,16 @@ Repository ini berisi tugas-tugas yang telah saya kerjakan selama mengikuti mata
   #### Silahkan kunjungi branch [tugas-2](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-2)
 
 ---
+
+### [3. **tugas-3**: Implementasi Navigasi dan Routing.](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-3)
+
+- Menggunakan React Navigation untuk mengatur navigasi antar layar.
+- Membuat stack navigator dan tab navigator.
+- Mengimplementasikan deep linking.
+- File utama: `app/HomeScreen.tsx`
+- Terdapat Praktikum dan Tugas Mandiri: `app/HomeScreen.tsx`
+
+  - Screen 1: `app/HomeScreen.tsx`
+  - Screen 2: `app/ProfileScreen.tsx`
+
+  #### Silahkan kunjungi branch [tugas-3](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-3)
