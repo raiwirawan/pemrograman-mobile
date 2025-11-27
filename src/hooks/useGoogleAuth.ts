@@ -1,10 +1,12 @@
 // src/hooks/useGoogleSignIn.ts
+import { getFirebaseAuth } from "@/src/config/firebase";
 import * as Google from "expo-auth-session/providers/google";
 import * as WebBrowser from "expo-web-browser";
 import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
-import { auth } from "../config/firebase";
+
+const auth = getFirebaseAuth();
 
 // Selesaikan auth session
 WebBrowser.maybeCompleteAuthSession();

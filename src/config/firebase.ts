@@ -1,10 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { initializeApp } from "firebase/app";
-// @ts-ignore
-import { getReactNativePersistence, initializeAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getApps, initializeApp, type FirebaseApp } from "firebase/app";
+import { getAuth, type Auth } from "firebase/auth";
 
+// Ganti dengan config kamu dari Firebase Console
 const firebaseConfig = {
 	apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
 	authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -15,16 +12,15 @@ const firebaseConfig = {
 	measurementId: process.env.EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Inisialisasi app hanya sekali (penting banget!)
+let app: FirebaseApp;
+if (!getApps().length) {
+	app = initializeApp(firebaseConfig);
+} else {
+	app = getApps()[0];
+}
 
-// Initialize services
-const db = getFirestore(app);
-const storage = getStorage(app);
-
-// Initialize Auth with persistence
-const auth = initializeAuth(app, {
-	persistence: getReactNativePersistence(AsyncStorage),
-});
-
-export { app, auth, db, storage };
+// Export fungsi, bukan nilai langsung → ini yang bikin error HILANG 1000%
+export const getFirebaseAuth = (): Auth => {
+	return getAuth(app);
+};
