@@ -12,7 +12,10 @@ import {
 } from "firebase/auth";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { Alert } from "react-native";
-import { auth, storage } from "../config/firebase";
+import { getFirebaseAuth, getFirebaseStorage } from "../config/firebase";
+
+const auth = getFirebaseAuth();
+const storage = getFirebaseStorage();
 
 export const login = async (email: string, password: string): Promise<void> => {
 	try {

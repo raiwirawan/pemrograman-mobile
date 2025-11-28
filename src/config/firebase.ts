@@ -1,7 +1,13 @@
+// src/config/firebase.ts
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getApps, initializeApp, type FirebaseApp } from "firebase/app";
 import { getAuth, type Auth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+// Using default web-extension auth which works in Expo Go; remove internal RN fallback
 
-// Ganti dengan config kamu dari Firebase Console
+// Config Firebase kamu
 const firebaseConfig = {
 	apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
 	authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -12,15 +18,22 @@ const firebaseConfig = {
 	measurementId: process.env.EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Inisialisasi app hanya sekali (penting banget!)
-let app: FirebaseApp;
-if (!getApps().length) {
-	app = initializeApp(firebaseConfig);
-} else {
-	app = getApps()[0];
-}
+const app: FirebaseApp =
+	getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-// Export fungsi, bukan nilai langsung → ini yang bikin error HILANG 1000%
-export const getFirebaseAuth = (): Auth => {
-	return getAuth(app);
-};
+let initializeAuthRN: any = null;
+let getReactNativePersistenceRN: any = null;
+
+const auth: Auth =
+	initializeAuthRN && getReactNativePersistenceRN
+		? initializeAuthRN(app, {
+				persistence: getReactNativePersistenceRN(AsyncStorage),
+		  })
+		: getAuth(app);
+
+export { auth };
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+
+export const getFirebaseAuth = () => auth;
+export const getFirebaseStorage = () => storage;

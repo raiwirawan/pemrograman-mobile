@@ -1,11 +1,13 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator, View } from "react-native";
 
-import { useAuth } from "../src/hooks/useAuth";
-import { AuthProvider } from "../src/providers/AuthProvider";
-import { HomeScreen } from "../src/screens/HomeScreen";
-import { LoginScreen } from "../src/screens/LoginScreen";
-import { RegisterScreen } from "../src/screens/RegisterScreen";
+import { useAuth } from "@/src/hooks/useAuth";
+import { AuthProvider } from "@/src/providers/AuthProvider";
+import CreateNote from "@/src/screens/CreateNote";
+import HomeScreen from "@/src/screens/HomeScreen";
+import { LoginScreen } from "@/src/screens/LoginScreen";
+import NoteDetail from "@/src/screens/NoteDetail";
+import { RegisterScreen } from "@/src/screens/RegisterScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +27,11 @@ function AppNavigator() {
 			screenOptions={{ headerShown: false, animation: "fade_from_bottom" }}
 		>
 			{user ? (
-				<Stack.Screen name="Home" component={HomeScreen} />
+				<>
+					<Stack.Screen name="Home" component={HomeScreen} />
+					<Stack.Screen name="CreateNote" component={CreateNote} />
+					<Stack.Screen name="NoteDetail" component={NoteDetail} />
+				</>
 			) : (
 				<>
 					<Stack.Screen name="Login" component={LoginScreen} />
