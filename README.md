@@ -18,6 +18,7 @@ Repository ini berisi tugas-tugas yang telah saya kerjakan selama mengikuti mata
   - Praktikum 5: `app/praktikum/ColoredBoxesFDJC.tsx`
   - Praktikum 6: `app/praktikum/ColoredBoxesStretch.tsx`
 - Terdapat Tugas: `app/tugas/index.tsx`
+
   - Tugas 1: `app/tugas/AlertPrimakara.tsx`
   - Tugas 2: `app/tugas/Gallery.tsx`
 
@@ -35,6 +36,7 @@ Repository ini berisi tugas-tugas yang telah saya kerjakan selama mengikuti mata
   - Praktikum 1: `app/praktikum/Greetings.tsx`
   - Praktikum 2: `app/praktikum/State.tsx`
 - Terdapat Tugas Mandiri: `app/tugas_mandiri/index.tsx`
+
   - Tugas 1: `app/tugas_mandiri/HelloWorld.tsx`
   - Tugas 2: `app/tugas_mandiri/Input.tsx`
 
@@ -49,6 +51,7 @@ Repository ini berisi tugas-tugas yang telah saya kerjakan selama mengikuti mata
 - Mengimplementasikan deep linking.
 - File utama: `app/HomeScreen.tsx`
 - Terdapat Praktikum dan Tugas Mandiri: `app/HomeScreen.tsx`
+
   - Screen 1: `app/HomeScreen.tsx`
   - Screen 2: `app/ProfileScreen.tsx`
 
@@ -64,5 +67,16 @@ Repository ini berisi tugas-tugas yang telah saya kerjakan selama mengikuti mata
 - File utama: `app/index.tsx`
 
   #### Silahkan kunjungi branch [tugas-4](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-4)
+
+---
+
+### [5. **tugas-5**: Implementasi Firestore Database.](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-5)
+
+- Mengintegrasikan Firebase Firestore sebagai database backend.
+- Membuat koleksi dan dokumen di Firestore.
+- Membaca, menulis, memperbarui, dan menghapus data dari Firestore (CRUD).
+- File utama: `app/index.tsx`
+
+  #### Silahkan kunjungi branch [tugas-5](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-5)
 
 ---
