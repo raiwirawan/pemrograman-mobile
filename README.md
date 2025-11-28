@@ -58,3 +58,25 @@ Repository ini berisi tugas-tugas yang telah saya kerjakan selama mengikuti mata
   #### Silahkan kunjungi branch [tugas-3](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-3)
 
 ---
+
+### [4. **tugas-4**: Implementasi Autentikasi Email Password serta Google Sign-In dengan Firebase.](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-4)
+
+- Mengintegrasikan Firebase Authentication untuk login dan pendaftaran pengguna.
+- Menggunakan email dan password untuk autentikasi.
+- Mengimplementasikan Google Sign-In sebagai metode autentikasi tambahan.
+- File utama: `app/index.tsx`
+
+  #### Silahkan kunjungi branch [tugas-4](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-4)
+
+---
+
+### [5. **tugas-5**: Implementasi Firestore Database.](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-5)
+
+- Mengintegrasikan Firebase Firestore sebagai database backend.
+- Membuat koleksi dan dokumen di Firestore.
+- Membaca, menulis, memperbarui, dan menghapus data dari Firestore (CRUD).
+- File utama: `app/index.tsx`
+
+  #### Silahkan kunjungi branch [tugas-5](https://github.com/raiwirawan/pemrograman-mobile/tree/tugas-5)
+
+---
